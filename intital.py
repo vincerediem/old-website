@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import sys
 sys.path.append(r"C:\Users\kopen\OneDrive\Desktop\Code\Algo Trading\RSI\RSI 2")
-import RSIv2_basefucntions as rsi2
+import RSIv2_html as rsi2
 
 app = Flask(__name__)
 
