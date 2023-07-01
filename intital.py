@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+app = Flask(__name__)
 import sys
 sys.path.append(r"C:\Users\kopen\OneDrive\Desktop\Code\Algo Trading\RSI\RSI 2")
 import RSIv2_html as rsi2
@@ -11,9 +12,12 @@ def index():
 
 @app.route('/run_script', methods=['POST'])
 def run_script():
-    stock_symbols = request.form.get('stock_symbols') 
-    result = perform_calculations(stock_symbols)
-    return render_template('result.html', result=result)
+    stocks = request.form.get('stock_symbols')
+    stock_list = stocks.split()
+
+    final_balance, initial_balance, stock, row, positions, cash, trade_gains_losses = rsi2.backtest_strategy(stocks.split())
+    metrics = rsi2.display_final_metrics(final_balance, initial_balance, stock, row, positions, cash, trade_gains_losses)
+    return render_template('result.html', result=metrics)
 
 def perform_calculations(stock_symbols):
     final_balance, initial_balance, stock, row, positions, cash, trade_gains_losses = rsi2.backtest_strategy(rsi2.stock_list(stock_symbols))

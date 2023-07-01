@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backtest Results</title>
+    <style>
+        .positive { color: green; }
+        .negative { color: red; }
+        #trade_table { display: none; }
+    </style>
 </head>
 <body>
     <h1>Backtest Results</h1>
-    <p>Initial account balance: ${{ result.initial_balance }}</p>
-    <p>Final account balance: ${{ result.final_balance }}</p>
-    <p>You made: {{ result.profit_percent }}%</p>
-    <p>You made: ${{ result.profit_absolute }}</p>
+    <p>Initial account balance: ${{ metrics.initial_balance }}</p>
+    <p>Final account balance: ${{ metrics.final_balance }}</p>
+    <p>You made: {{ metrics.profit_percent }}%</p>
+    <p>You made: ${{ metrics.profit_absolute }}</p>
 
-    {% for key, value in result.items() %}
+    {% for key, value in metrics.items() %}
         {% if key.endswith('final_share_price') %}
             <p>You have shares worth ${{ value }} at end of period</p>
         {% elif key.endswith('total_gains_losses') %}
             <p>Total gains/losses for {{ key.split('_')[0] }}: {{ value }}</p>
         {% endif %}
     {% endfor %}
-</body>
-</html>
+
+    <button id="toggle_button">Show Trade Specific Metrics</
