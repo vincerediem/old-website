@@ -1,12 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trading Backtest</title>
+</head>
 <body>
-    <h1>Welcome to the Interactive Python Script Example</h1>
+    <h1>Stock Trading Backtest</h1>
     <form action="/run_script" method="POST">
-        <label for="param1">Parameter 1:</label>
-        <input type="text" id="param1" name="param1"><br><br>
-        <label for="param2">Parameter 2:</label>
-        <input type="text" id="param2" name="param2"><br><br>
-        <input type="submit" value="Run Script">
+        <label for="stock_symbols">Enter stocks separated by space:</label><br>
+        <input type="text" id="stock_symbols" name="stock_symbols" required><br>
+        <input type="submit" value="Run Backtest">
     </form>
 </body>
 </html>

@@ -1,6 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backtest Results</title>
+</head>
 <body>
-    <h1>Result:</h1>
-    <p>{{ result }}</p>
+    <h1>Backtest Results</h1>
+    <p>Initial account balance: ${{ result.initial_balance }}</p>
+    <p>Final account balance: ${{ result.final_balance }}</p>
+    <p>You made: {{ result.profit_percent }}%</p>
+    <p>You made: ${{ result.profit_absolute }}</p>
+
+    {% for key, value in result.items() %}
+        {% if key.endswith('final_share_price') %}
+            <p>You have shares worth ${{ value }} at end of period</p>
+        {% elif key.endswith('total_gains_losses') %}
+            <p>Total gains/losses for {{ key.split('_')[0] }}: {{ value }}</p>
+        {% endif %}
+    {% endfor %}
 </body>
 </html>
